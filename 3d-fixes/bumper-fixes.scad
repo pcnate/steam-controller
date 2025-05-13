@@ -1,7 +1,7 @@
-//color( "#004400", 1 )
+//color( "#004400", 1)
 //import("./valve-source/BoardOutlineLuna.stl");
 color( "#333333", 1 )
-import("./valve-source/BumperGPrime.stl");
+import("./valve-source/BumperGPrime-sealed.stl");
 
 // color("#000000") {
 //   import("./valve-source/DonutPuck.stl");
@@ -27,28 +27,29 @@ import("./valve-source/BumperGPrime.stl");
 //   import("./valve-source/TriggerCapRightJAG.stl");
 // }
 
+union() {
+    
+    boardThickness = 1.55;
 
-boardThickness = 1.55;
+    buttonPressWidth = 1;
+    buttonPressHeight = boardThickness / 0.5;
+    buttonPressDepth = 0.5;
 
-buttonPressWidth = 1;
-buttonPressHeight = boardThickness / 0.5;
-buttonPressDepth = 0.5;
+    wingLength = 15;
+    wingThickness = 2;
+    wingWidth = 6;
+    wingOffsetZ = 1.75 - wingWidth;
 
-wingLength = 15;
-wingThickness = 2;
-wingWidth = 6;
-wingOffsetZ = 1.75 - wingWidth;
+    buttonOffsetX = 47; // distance from center of board to the right
+    buttonOffsetY = 32; // distance from the center of the board to the front
+    buttonOffsetZ = - buttonPressHeight / 2 - boardThickness /2; // distance from center down to match board
 
-buttonOffsetX = 47; // distance from center of board to the right
-buttonOffsetY = 32; // distance from the center of the board to the front
-buttonOffsetZ = - buttonPressHeight / 2 - boardThickness /2; // distance from center down to match board
+    color("orange") {
 
-
-color("orange") {
-
-  translate([ buttonOffsetX, buttonOffsetY-buttonPressDepth, buttonOffsetZ ]) 
-  cube([ buttonPressWidth, buttonPressDepth, buttonPressHeight ]);
-  
-  translate([ buttonOffsetX - 13, buttonOffsetY, wingOffsetZ ]) 
-  cube([ wingLength, wingThickness, wingWidth ]);
+      translate([ buttonOffsetX, buttonOffsetY-buttonPressDepth, buttonOffsetZ ]) 
+      cube([ buttonPressWidth, buttonPressDepth, buttonPressHeight ]);
+      
+      translate([ buttonOffsetX - 13, buttonOffsetY, wingOffsetZ ]) 
+      cube([ wingLength, wingThickness, wingWidth ]);
+    }
 }
